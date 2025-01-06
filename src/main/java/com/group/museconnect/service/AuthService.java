@@ -7,6 +7,7 @@ import com.group.museconnect.global.config.properties.SpotifyProperties;
 import com.group.museconnect.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Base64;
 import java.util.HashMap;
@@ -20,7 +21,6 @@ public class AuthService {
     private final SpotifyAccountClient spotifyAccountClient;
     private final SpotifyApiClient spotifyApiClient;
     private final SpotifyProperties spotifyProperties;
-    private final UserService userService;
     private final UserRepository userRepository;
     private final TokenService tokenService;
 
@@ -46,7 +46,7 @@ public class AuthService {
 
         if (user.isEmpty()) {
             userRepository.save(
-                    new User((String) response.get("display_name"), email)
+                    new User(email, (String) response.get("display_name"))
             );
         }
 
