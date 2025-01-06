@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.Map;
 
-@FeignClient(name = "SpotifyClient", url = "https://accounts.spotify.com")
-public interface SpotifyClient {
+@FeignClient(name = "SpotifyAccountClient", url = "https://accounts.spotify.com")
+public interface SpotifyAccountClient {
 
     @PostMapping(value = "/api/token", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     SpotifyTokenResponse getAccessToken(

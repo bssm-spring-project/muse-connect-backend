@@ -15,7 +15,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/spotify")
-    public void authWithSpotify(@RequestParam String code) {
-        authService.authWithSpotify(code);
+    public String authWithSpotify(@RequestParam String code) {
+        return authService.authWithSpotify(code);
     }
 }

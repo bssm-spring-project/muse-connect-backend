@@ -3,27 +3,28 @@ spring:
     name: muse-connect
 
   datasource:
-    driver-class-name: org.h2.Driver
-    url: 'jdbc:h2:mem:test'
-    #url: 'jdbc:h2:~/test
+    url: jdbc:mysql://localhost:3307/muse-connect
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: cabbage16
     password: qlalfqjsgh4537
 
-  h2:
-    console:
-      enabled: true
-
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: create
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
-        show_sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
 
 spotify:
   client-id: ${SPOTIFY_CLIENT_ID}
   client-secret: ${SPOTIFY_CLIENT_SECRET}
   redirect-uri: ${SPOTIFY_REDIRECT_URI}
+
+jwt:
+  refresh-expiration-time: 1296000000
+  access-expiration-time: 1296000000
+  prefix: Bearer
+  secret-key: ${JWT_SECRET}

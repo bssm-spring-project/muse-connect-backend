@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: museconnect.local.db
+    image: mysql:8.0.30
+    environment:
+      MYSQL_ROOT_PASSWORD: "qlalfqjsgh4537"
+      MYSQL_USER: "cabbage16"
+      MYSQL_PASSWORD: "qlalfqjsgh4537"
+      MYSQL_DATABASE: "muse-connect"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+
+    ports:
+      - "3307:3306"
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: museconnect.local.redis
+    command: /bin/sh -c "redis-server --requirepass qlalfqjsgh4537"
+    ports:
+      - "6379:6379"
